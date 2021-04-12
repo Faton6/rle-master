@@ -86,7 +86,7 @@ void in_rle_crypt_alg( std::ifstream& in, std::ofstream& out)
       }
       crc = 0;
     }
-    //(crc!=len) ? out.put(0^key[crc+1]) : out.put(0^key[0]);
+    //добавить 0 в конец записи, для данных форматов
 }
 
 void un_rle_crypt_alg( std::ifstream& in, std::ofstream& out )

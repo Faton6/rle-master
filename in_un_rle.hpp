@@ -44,7 +44,6 @@ void inRLE(std::string &name)
   std::ofstream out;
   name = name + rle;
   out.open( name, std::ifstream::binary );
-  //inline info_put_rle(std::string& name);
   if (!out.is_open())
   {
           std::cerr << "Error of open file\n";
@@ -58,6 +57,6 @@ void inRLE(std::string &name)
   file.WriteFooter(out);
   out.close();
   in.close();
-  std::remove(old_name.c_str()); // будет ли здесь пространство имён filesystem?
+  std::remove(old_name.c_str());
 }
 

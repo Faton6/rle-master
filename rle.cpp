@@ -28,11 +28,12 @@
 #define  USE_POSIX
 #endif //USE_POSIX
 #endif //USE_MACOS
-
+/*
 #if (!defined USE_POSIX) && (!defined USE_WIN32)
 #warning WARNING: target platform not specified, choosing POSIX-API by default
 #define  USE_POSIX
 #endif
+*/ //разобраться почему не работает
 
 #ifdef   USE_POSIX
 #ifdef   USE_WIN32
@@ -46,8 +47,8 @@
 #endif //USE_WIN32
 #endif //USE_POSIX
 
-#include "Algorithm.cpp"
-#include "RLE.h"
+//#include "Algorithm.cpp"
+//#include "RLE.h"
 //#include "UNRLE.h"
 
 //порядок подключения важен
@@ -100,63 +101,6 @@ int main(int argc, char **argv)
   {
       name = argv[2];
 
-//#ifdef RLE_PROG
-  while ((opt = getopt(argc, argv, "kucdpte:")) != -1) {
-    switch (opt) {
-      case 'd':     //decompress
-        process_func = unRLE;
-	    break;
-/*
-#elif  UNRLE_PROG
-  while ((opt = getopt(argc, argv, "kucdpt:")) != -1) {  
-    switch (opt) {
-
-#else //RLE_CAT
-  while ((opt = getopt(argc, argv, "kucdpt:")) != -1) {
-    switch (opt) {
-
-     case 'c':      //stdout
-	    process_func = catRLE;
-        break;
-
-#endif*/
-      case 'k':     //keep file
-        keep_file = true;
-        break;
-
-      case 'e':     //encryption
-	    process_func = inRLE_crypt;
-    	break;
-
-      case 'u':     //decryption
-	    process_func = unRLE_crypt;
-    	break;
-
-      case 'p':     //new data from std input in <file>.rle
-	    process_func = putRLE;
-	    break;
-
-      default: /* '?' */
-        std::cerr << "Usaged: " << argv[0] << " invalid arg"
-                  << std::endl;
-        exit(EXIT_FAILURE);
-      }
-    }
-  }
-  if (optind >= argc+1) 
-  {
-	  std::cerr << "Expected argument after options" << std::endl;
-    exit(EXIT_FAILURE);
-  }
-  if ( (name.length() > 3) && name.rfind(rle) 
-          && process_func == inRLE  ) process_func = unRLE;
-
-    process_func(name);
-    exit(EXIT_SUCCESS);
-}
-
-/*
- 
   while ((opt = getopt(argc, argv, "kucdpt:")) != -1) 
   {
     switch (opt) 
@@ -185,13 +129,22 @@ int main(int argc, char **argv)
 	    process_func = catRLE;
         break;
 
-      default: * '?' *
+      default:
         std::cerr << "Usaged: " << argv[0] << " invalid arg"
                   << std::endl;
         exit(EXIT_FAILURE);
       }
     }
   }
- 
+  if (optind >= argc+1) 
+  {
+	  std::cerr << "Expected argument after options" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  if ( (name.length() > 3) && name.rfind(rle) 
+          && process_func == inRLE  ) process_func = unRLE;
 
- */
+    process_func(name);
+    exit(EXIT_SUCCESS);
+}
+

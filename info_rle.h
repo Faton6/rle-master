@@ -240,7 +240,7 @@ void info_output_rle(std::string name)
     
     return EXIT_FAILURE;
   }
-  /*
+  
   if( exists(p) )
   {
     file_status fs = status(p);
@@ -266,7 +266,7 @@ void info_output_rle(std::string name)
   */
   //---
   //
-  /*
+/*  
   uint8_t ID1 = in.get();
   if(in.eof()){ std::cerr << "Error reading ID1" << std::endl; return 1; }
   uint8_t ID2 = in.get();
@@ -397,7 +397,4 @@ void info_output_rle(std::string name)
   in.close();
   
 }
-
-
-
 */
