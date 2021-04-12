@@ -2,7 +2,7 @@
 * #include <iostream>
 * #include <fstream>
 */
-void catRLE(std::string name)
+void catRLE(std::string& name)
 {
   std::ifstream in(name, std::ifstream::binary);
   if( !in.is_open() ) //проверка открытия
@@ -27,7 +27,7 @@ void catRLE(std::string name)
   in.close();
 }
 
-void putRLE(std::string name)
+void putRLE(std::string& name)
 {
   std::cout << "Enter the line: ";
   std::string input;
